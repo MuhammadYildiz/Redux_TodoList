@@ -1,11 +1,10 @@
 import { createReduxModule } from 'hooks-for-redux'
-export const [useList, { addNewItem, changeDone, deleteItem,clearAll }] = createReduxModule("list", [], {
-    addNewItem: (state, newDodoItem) => [
+export const [useList, { addNewItem, changeDone, deleteItem, clearAll }] = createReduxModule("list", [], {
+    addNewItem: (state,value) => [
         ...state,
         {
-            ...newDodoItem,
             id: state.length,
-            item: newDodoItem.newItem,
+            item: value,
             done: false,
         },
     ],
@@ -16,6 +15,8 @@ export const [useList, { addNewItem, changeDone, deleteItem,clearAll }] = create
             }
             return todo;
         }),
-    deleteItem: (state, id) => state.filter((index) => index.id !== id),
-    clearAll: ()=> [],
+    deleteItem: (state, id) =>
+        state.filter((index) => index.id !== id,
+        ),
+    clearAll: () => [],
 });
