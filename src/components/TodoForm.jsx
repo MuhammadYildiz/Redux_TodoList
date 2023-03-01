@@ -7,7 +7,7 @@ const [inputAlert, setAlert] = createReduxModule("alert", "")
 export default function TodoForm() {
     const value = useValue()
     return (
-        <div className='flex flex-col justify-center items-center bg-cyan-600 m-auto sm:w-[80%] lg:sm:w-[50%] sm:mt-5 sm:rounded-3xl  shadow-xl shadow-black  pb-3 '>
+        <div className='flex flex-col justify-center items-center bg-cyan-600 m-auto sm:w-[80%] lg:sm:w-[50%] sm:mt-5 sm:rounded-3xl  shadow-xl shadow-black  pb-3  top-0 sticky'>
             <h1 className='text-3xl my-5 sm:mt-10 text-center text-white'>Things I have to do today</h1>
             <div >{inputAlert()}</div>
             <form onSubmit={(e) => {
@@ -21,7 +21,7 @@ export default function TodoForm() {
                 }
                 else {
                     setAlert("")
-                    addNewItem({ newItem: value })
+                    addNewItem(value)
                     setValue("")
                 }
             }}
@@ -40,6 +40,7 @@ export default function TodoForm() {
                 />
                 <div className='flex justify-around items-center m-auto'>
                     <button
+                    type='submit'
                         className='bg-black hover:bg-blue-700 text-white w-[115px] p-2  outline-none font-bold rounded-xl mx-1 '
                     >
                         Add to do
